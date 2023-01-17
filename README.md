@@ -1,13 +1,13 @@
 # Mining-Game-Dc-Bot
-**/ping **
+/ping 
 Returns latency of the bot. 
 
-**/adress **
+/adress 
  allows users to add their address to a database for use with other commands.
 
-**/balance **
+/balance 
 Shows balance of matic and watt ammount in wallet. 
 Can be executed to other users. 
 
-**/donate**
+/donate
 Shows donation adress,
