@@ -3,7 +3,7 @@
 
 Returns latency of the bot. 
 
-/adress 
+/address 
 
  allows users to add their address to a database for use with other commands.
 
