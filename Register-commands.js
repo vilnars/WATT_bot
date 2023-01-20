@@ -21,10 +21,10 @@ const commands = [
     }]
   },
   {
-    name: 'address',
+    name: 'adress',
     description: 'Register your address',
     options:[{
-      name:'address',
+      name:'adress',
       description:'Provide your matic adress ',
       type: 3,
       required:true,
