@@ -51,7 +51,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
     await rest.put(
       Routes.applicationGuildCommands(
         process.env.ClientID_BOT,
-        process.env.GuildID_DEV
+        process.env.GuildID_MINING
       ),
       { body: commands }
     );
