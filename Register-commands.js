@@ -30,6 +30,16 @@ const commands = [
       required:true,
     }]
   },
+{
+    name: 'inventory',
+    description: 'Shows your staked',
+    options:[{
+      name:'user',
+      description:'Shows Other users inventory',
+      type: 6,
+      required:false,
+    }]
+  },
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
