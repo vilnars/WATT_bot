@@ -3,6 +3,10 @@
 
 Returns latency of the bot. 
 
+/inventory 
+Shows users staked and not staked items
+can be executed on other users 
+
 /address 
 
  allows users to add their address to a database for use with other commands.
