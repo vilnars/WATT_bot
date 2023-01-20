@@ -61,7 +61,7 @@ else if (Check){
 Wallet\n
 <:matic:1061514190885494844> ${OWN_MATIC_Balance.toFixed(4)} MATIC / <:usd:1061731415756124201>${OWN_MATIC_USD} USD\n 
 <:watt:1061557096241442858> ${OWN_WATT_Balance.toFixed(4)} WATT /<:usd:1061731415756124201> ${OWN_WATT_USD} USD\n 
-Wallet Balance of <:usd:1061731415756124201> ${OWN_Total_Balnace} USD `,ephemeral: true})
+Wallet Balance of <:usd:1061731415756124201> ${OWN_Total_Balnace.toFixed(2)} USD `,ephemeral: true})
 
 }
 }
@@ -88,7 +88,7 @@ else if(Check2){
 
     const OTHER_Total_Balnace = Number(OTHER_WATT_USD)+Number(OTHER_MATIC_USD)
    await interaction.editReply({content:`
-   Ballance of <@${Check2.userID}>
+   <@${Check2.userID}>'s Balance\n\n
                  :cut_of_meat:Staking Rewards::cut_of_meat:
 <:watt:1061557096241442858>${OTHER_NEWREWARDS} WATT / <:usd:1061731415756124201>${(OTHER_NEWREWARDS * WATT_Price).toFixed(2)} USD\n
                           Wallet

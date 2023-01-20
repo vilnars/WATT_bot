@@ -3,7 +3,7 @@ const ethers = require('ethers')
 const AddressSchema = require('../models/adresesSchema')
 const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com/")
 const publicKey = '0x4B6123e6811C27558B5cb96b847B2f22B247bf25'
-const {NFT,Fiat,Token} = require(`../lib/emogi`)
+const {NFT,BuildIN,Token} = require(`../lib/emogi`)
 
 
 const tokenMap = new Map([
@@ -135,7 +135,7 @@ else if(Check2){
   
   
   interaction.editReply({
-      content: ``${interaction.options.getUser("user")}'s \n>>> **Inventory** \n${Nonstaked}`+ `\n **Staked NFT'S:**\n\n` + InventoryString +
+      content: `${interaction.options.getUser("user")}'s \n>>> **Inventory** \n${Nonstaked}`+ `\n **Staked NFT'S:**\n\n` + InventoryString +
       `\n**Daily income:** 
       ${Token.WATT} ` + Daily + ` WATT`  ,
       
