@@ -135,7 +135,7 @@ else if(Check2){
   
   
   interaction.editReply({
-      content: `>>> **Inventory** \n${Nonstaked}`+ `\n **Staked NFT'S:**\n\n` + InventoryString +
+      content: ``${interaction.options.getUser("user")}'s \n>>> **Inventory** \n${Nonstaked}`+ `\n **Staked NFT'S:**\n\n` + InventoryString +
       `\n**Daily income:** 
       ${Token.WATT} ` + Daily + ` WATT`  ,
       
