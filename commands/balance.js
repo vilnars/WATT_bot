@@ -94,7 +94,7 @@ else if(Check2){
                           Wallet
 <:matic:1061514190885494844> ${OTHER_MATIC_Balance.toFixed(4)} MATIC / <:usd:1061731415756124201>${OTHER_MATIC_USD} USD
 <:watt:1061557096241442858> ${OTHER_WATT_Balance.toFixed(4)} WATT /<:usd:1061731415756124201> ${OTHER_WATT_USD} USD
-Wallet Balance of <:usd:1061731415756124201> ${OTHER_Total_Balnace.toFixed(4)} USD `,ephemeral: true })
+Wallet Balance of <:usd:1061731415756124201> ${OTHER_Total_Balnace.toFixed(2)} USD `,ephemeral: true })
 }}
     }
 }

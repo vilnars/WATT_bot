@@ -39,6 +39,38 @@ const commands = [
       type: 6,
       required:false,
     }]
+  },{
+    name: 'top',
+    description: 'Shows balance top of Owned NF',
+    type: 1,
+    options:[{
+      name:"type",
+      description:"Select one to see specified top",
+      type:3,
+      required:true,
+      choices:[{
+      name:"WATT",
+      value:"watt",
+    },{
+      name:"Daily Rewards ",
+      value:"d_rewards",
+    },
+    {
+      name:"XL1",
+      value:"xl1"
+    },{
+      name:"TX120",
+      value:"tx120"
+    },{
+      name:"GP50",
+      value:"gp50"
+    },{
+      name:"Genesis Badge",
+      value:"badge"
+    },
+
+  ]}]
+    
   },
 ];
 
