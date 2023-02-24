@@ -1,27 +1,35 @@
-# Mining-Game-Dc-Bot
-/ping 
+# Bot Functions
 
-Returns latency of the bot. 
+This bot has several functions that users can use to interact with it. Here are the available commands:
 
-/inventory 
+## Ping
 
-Shows users staked and not staked items
-can be executed on other users 
+This command returns the latency of the bot. To use it, simply type `/ping` in the chat.
 
-/address 
+## Inventory
 
- allows users to add their address to a database for use with other commands.
+This command shows the items that users have staked and not staked. It can also be executed on other users.
 
-/balance 
+To check your own inventory, type `/inventory` in the chat.
 
-Shows balance of matic and watt ammount in wallet. 
-Can be executed to other users. 
+To check another user's inventory, mention them in the command. For example, to check the inventory of Altcoin Cash, type `/inventory @Altcoin Cash#3471` in the chat.
 
-/top 
+## Address
 
-you can select one of the listed tops to see the users with the most 
-watt,each NFT, and daily rewards.
+This command allows users to add their address to a database for use with other commands. To use it, type `/address <address>`. For example, to add a donation address, type `/address 0x7e453ee34105C32bB8710e1aa4e8C12Cb7974d32` in the chat.
 
-/donate
+## Balance
 
-Shows donation adress,
+This command shows the balance of Matic and Watt in the wallet. It can also be executed on other users.
+
+To check your own balance, type `/balance` in the chat.
+
+To check another user's balance, mention them in the command. For example, to check the balance of Altcoin Cash's wallet, type `/balance @Altcoin Cash#3471` in the chat.
+
+## Top
+
+This command shows the users with the most Watt, each NFT, and daily rewards. To use it, type `/top <type>` in the chat, and select one of the listed tops. For example, to see the top users with the most Watt, type `/top WATT` in the chat.
+
+## Donate
+
+This command shows the donation address. To use it, type `/donate` in the chat.
