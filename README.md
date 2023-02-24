@@ -16,7 +16,7 @@ To check another user's inventory, mention them in the command. For example, to 
 
 ## Address
 
-This command allows users to add their address to a database for use with other commands. To use it, type `/address <address>`. For example, to add a donation address, type `/address 0x7e453ee34105C32bB8710e1aa4e8C12Cb7974d32` in the chat.
+This command allows users to add their address to a database for use with other commands. To use it, type `/address <address>`. For example, to add a donation address, type `/address 0x0000000000000000000000000000000000000000` in the chat.
 
 ## Balance
 
