@@ -79,7 +79,9 @@ const balancebanner = new EmbedBuilder()
 .setColor(0xdfdf34)
 .setImage(`https://cdn.discordapp.com/attachments/1078780922297598023/1079283193359908984/F334117B-0668-4E50-BE0A-784B2E006524.png`)
 const altcoin_balance = new EmbedBuilder()
-  .setAuthor({name:`Altcoin Network`,iconURL:'https://media.discordapp.net/attachments/1050912293317255228/1051161449285828638/AltcoinChain_logo.png'})
+  .setAuthor({name:`Altcoin Network`,
+  iconURL:'https://media.discordapp.net/attachments/1050912293317255228/1051161449285828638/AltcoinChain_logo.png',
+  url:`http://expedition.altcoinchain.org/address/${Check.adress}`})
   .setColor(0xFFFAFA)
 .addFields({
 name:`__${Custom.Wallet}Wallet__`,
@@ -93,7 +95,9 @@ value:`${Token.WATT}${alt_wattRewards} WATT `,inline: true})
 
 const polygon_balance = new EmbedBuilder()
 .setColor(0xA020F0)
-.setAuthor({name:'Polygon Network',iconURL:'https://cdn.discordapp.com/attachments/1078780922297598023/1079282443116351509/matic.png'})
+.setAuthor({name:'Polygon Network',
+iconURL:'https://cdn.discordapp.com/attachments/1078780922297598023/1079282443116351509/matic.png',
+url:`https://polygonscan.com/address/${Check.adress}`})
 .addFields({
 name:`__${Custom.Wallet}Wallet__`,value:`${Token.MATIC} __${OWN_MATIC_Balance.toFixed(4)} MATIC__ / ${Fiat.USD}${OWN_MATIC_USD}USD\n ${Token.WATT} ${OWN_WATT_Balance.toFixed(4)} WATT /${Fiat.USD} ${OWN_WATT_USD} USD\n
 *Balance of ${Fiat.USD} ${OWN_Total_Balnace.toFixed(2)} USD*`,inline: true},
