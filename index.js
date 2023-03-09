@@ -29,7 +29,7 @@ client.on('interactionCreate', async interaction => {
   const commandName = interaction.commandName;
   const command = client.commands.get(commandName);
   if (!command) return;
-  command.execute(interaction);
+  command.execute(interaction,client);
 });
 
 client.login(process.env.TOKEN);

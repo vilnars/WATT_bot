@@ -1,11 +1,12 @@
 const AddressSchema = require('../models/adresesSchema')
 const ethers = require('ethers')
-const {NFT,BuildIN,Token,Fiat,Custom} = require(`../lib/emogi`)
+const {BuildIN,Token,Fiat,Custom} = require(`../lib/emogi`)
+const { EmbedBuilder, Client} = require ("discord.js");
 const {
 API,
 decimals,
 } = require(`../lib/config`);
-
+const guild_ID = process.env.GuildID_DEV
 const {
 wattToken, 
 miningGame,
@@ -37,7 +38,7 @@ const alt_mininggame = new ethers.Contract(
 
 module.exports = { 
     name:"balance",
-    async execute(interaction){
+    async execute(interaction,client){
         await interaction.deferReply({ephemeral: true })
 const response = await fetch(API.MATIC_Value)
     const data = await response.json();
@@ -71,25 +72,36 @@ else if (Check){
     const OWN_NEWREWARDS = (OWN_REWARDS[0] / decimals).toFixed(4);
     const OWN_WATT_USD = (OWN_WATT_Balance * WATT_Price).toFixed(2);
     const OWN_MATIC_USD = (OWN_MATIC_Balance * MATIC_Price).toFixed(2);
-const OWN_ALT_USD = (OWN_ALT_Balance * ALT_Price) 
+    const OWN_ALT_USD = (OWN_ALT_Balance * ALT_Price) 
     const OWN_Total_Balnace = Number(OWN_WATT_USD)+Number(OWN_MATIC_USD)
-    
-    interaction.editReply({content:`
-    ${Token.MATIC}**Polygon Network**${Token.MATIC}\n 
-${Custom.Wallet}Wallet${Custom.Wallet}
-${Token.MATIC} ${OWN_MATIC_Balance.toFixed(4)} MATIC / ${Fiat.USD}${OWN_MATIC_USD} USD
-${Token.WATT} ${OWN_WATT_Balance.toFixed(4)} WATT /${Fiat.USD} ${OWN_WATT_USD} USD
-${Custom.Wallet} Balance of ${Fiat.USD} ${OWN_Total_Balnace.toFixed(2)} USD \n
-${BuildIN.Steak}Staking Rewards:${BuildIN.Steak}
-${Token.WATT}${OWN_NEWREWARDS} WATT / ${Fiat.USD}${(OWN_NEWREWARDS * WATT_Price).toFixed(2)} USD \n
-\n${Token.ALT}**Altcoin Chain**${Token.ALT}\n
-${Custom.Wallet}Wallet${Custom.Wallet}
-${Token.ALT}${OWN_ALT_Balance.toFixed(4)} ALT / ${Fiat.USD}${OWN_ALT_USD.toFixed(2)}USD
-${Token.WATT}${ALT_OWN_WATT_Balance.toFixed(4)} WATT\n
-${BuildIN.Steak}Staking Rewards:${BuildIN.Steak}
-${Token.WATT}${alt_wattRewards}WATT`
-,ephemeral: true})
 
+const balancebanner = new EmbedBuilder()
+.setColor(0xdfdf34)
+.setImage(`https://cdn.discordapp.com/attachments/1078780922297598023/1079283193359908984/F334117B-0668-4E50-BE0A-784B2E006524.png`)
+const altcoin_balance = new EmbedBuilder()
+  .setAuthor({name:`Altcoin Network`,iconURL:'https://media.discordapp.net/attachments/1050912293317255228/1051161449285828638/AltcoinChain_logo.png'})
+  .setColor(0xFFFAFA)
+.addFields({
+name:`__${Custom.Wallet}Wallet__`,
+ 
+value:`${Token.ALT}__${OWN_ALT_Balance.toFixed(4)} ALT__ / ${Fiat.USD}${OWN_ALT_USD.toFixed(2)} USD
+${Token.WATT}${OWN_WATT_Balance.toFixed(4)} WATT\n`,
+inline: true},
+  
+{name:`__${BuildIN.Steak}Staking Rewards:__`,
+value:`${Token.WATT}${alt_wattRewards} WATT `,inline: true})
+
+const polygon_balance = new EmbedBuilder()
+.setColor(0xA020F0)
+.setAuthor({name:'Polygon Network',iconURL:'https://cdn.discordapp.com/attachments/1078780922297598023/1079282443116351509/matic.png'})
+.addFields({
+name:`__${Custom.Wallet}Wallet__`,value:`${Token.MATIC} __${OWN_MATIC_Balance.toFixed(4)} MATIC__ / ${Fiat.USD}${OWN_MATIC_USD}USD\n ${Token.WATT} ${OWN_WATT_Balance.toFixed(4)} WATT /${Fiat.USD} ${OWN_WATT_USD} USD\n
+*Balance of ${Fiat.USD} ${OWN_Total_Balnace.toFixed(2)} USD*`,inline: true},
+ {name:`${BuildIN.Steak}__Staking Rewards:__`,value:`${Token.WATT}${OWN_NEWREWARDS} WATT / ${Fiat.USD}${(OWN_NEWREWARDS * WATT_Price).toFixed(2)} USD `,inline: true})
+const finalembed = [balancebanner, altcoin_balance,polygon_balance]
+
+interaction.editReply({embeds:finalembed
+,ephemeral: true})
 }
 }
 
@@ -105,36 +117,62 @@ if(!Check2){
 }
 else if(Check2){
     
+    
     const OTHER_WATT_Balance = (await WattContract.balanceOf(Check2.adress)/ decimals);
     const OTHER_MATIC_Balance = (await provider.getBalance(Check2.adress) / decimals);
     const OTHER_ALT_Balance = (await alt_provider.getBalance(Check2.adress) / decimals);
-    const OTHER_REWARDS = ((await miningGameContract.getAllRewardsAmount(Check2.adress))[0] / decimals).toFixed(4); // Gives out Earned Rewards  
-
-    // const ALT_OTHER_WATT_Balance = (await alt_watt_contract.balanceOf(Check2.adress) / decimals)
+    const OTHER_REWARDS = await miningGameContract.getAllRewardsAmount(Check2.adress);
     const ALT_OTHER_WATT_Balance = (await alt_watt_contract.balanceOf(Check2.adress) / decimals)
-    const alt_wattRewards = ((await alt_mininggame.getAllRewardsAmount(Check2.adress))[0] / decimals).toFixed(4);
-    const OTHER_WATT_USD = (OTHER_WATT_Balance * WATT_Price).toFixed(2); //Gives nummbers  for Target user Wat USD Value fixed to 2 decimals (Pollygon network)
-    const OTHER_MATIC_USD = (OTHER_MATIC_Balance * MATIC_Price).toFixed(2); // Gives Nummbers For Target user Matic value 
-    const OTHER_ALT_USD = (OTHER_ALT_Balance* ALT_Price).toFixed(2)
+    const OTHER_alt_wattRewards = ((await alt_mininggame.getAllRewardsAmount(Check2.adress))[0] / decimals).toFixed(4);
+    const OTHER_NEWREWARDS = (OTHER_REWARDS[0] / decimals).toFixed(4);
+    const OTHER_WATT_USD = (OTHER_WATT_Balance * WATT_Price).toFixed(2);
+    const OTHER_MATIC_USD = (OTHER_MATIC_Balance * MATIC_Price).toFixed(2);
+    const OTHER_ALT_USD = (OTHER_ALT_Balance * ALT_Price) 
     const OTHER_Total_Balnace = Number(OTHER_WATT_USD)+Number(OTHER_MATIC_USD)
-    
-   await interaction.editReply({content:`
-    <@${Check2.userID}>**'s Balance**\n
-    ${Token.MATIC}**Polygon Network**${Token.MATIC}\n 
-    ${Custom.Wallet}Wallet${Custom.Wallet}
-    ${Token.MATIC} ${OTHER_MATIC_Balance.toFixed(4)} MATIC / ${Fiat.USD}${OTHER_MATIC_USD} USD
-    ${Token.WATT} ${OTHER_WATT_Balance.toFixed(4)} WATT /${Fiat.USD}${OTHER_WATT_USD} USD\n
-    ${Custom.Wallet} Wallet Balance of ${Fiat.USD} ${OTHER_Total_Balnace.toFixed(2)} USD \n
-    ${BuildIN.Steak}Staking Rewards:${BuildIN.Steak}
-    ${Token.WATT}${OTHER_REWARDS} WATT / ${Fiat.USD}${(OTHER_REWARDS * WATT_Price).toFixed(2)} USD\n
-    ${Token.ALT}**Altcoin Chain**${Token.ALT}\n
-    ${Custom.Wallet}Wallet${Custom.Wallet}
-    ${Token.ALT}${OTHER_ALT_Balance.toFixed(4)}ALT / ${Fiat.USD}${OTHER_ALT_USD} USD
-    ${Token.WATT}${ALT_OTHER_WATT_Balance.toFixed(4)} WATT\n
-    ${BuildIN.Steak}Staking Rewards:${BuildIN.Steak}
-    ${Token.WATT}${alt_wattRewards}WATT
-`,ephemeral: true })
 
+    const user = client.users.cache.get(`${Check2.userID}`);
+    const member = interaction.guild.members.cache.get(Check2.userID);
+    const url = user.displayAvatarURL({ dynamic: true });
+    const username = member.user.username;
+
+
+const balancebanner = new EmbedBuilder()
+.setColor(0xdfdf34)
+.setAuthor({name:`@${username}'s Balance`,iconURL:url})
+.setImage(`https://cdn.discordapp.com/attachments/1078780922297598023/1079283193359908984/F334117B-0668-4E50-BE0A-784B2E006524.png`)
+// .setFooter({text:`${username}'s Balance`, iconURL:`${url}`})
+const altcoin_balance = new EmbedBuilder()
+  .setAuthor(
+    {name:`Altcoin Network`,
+    iconURL:'https://media.discordapp.net/attachments/1050912293317255228/1051161449285828638/AltcoinChain_logo.png',
+    url:`http://expedition.altcoinchain.org/address/${Check2.adress}`
+})   
+    .setColor(0xFFFAFA)
+//   .setTitle(`**${username}'s Balance**`)
+.addFields(
+    {name:`__${Custom.Wallet}Wallet__`,
+value:`${Token.ALT}__${OTHER_ALT_Balance.toFixed(4)} ALT__ / ${Fiat.USD}${OTHER_ALT_USD.toFixed(2)} USD
+${Token.WATT}${ALT_OTHER_WATT_Balance.toFixed(4)} WATT\n`,
+inline: true},
+  
+{name:`__${BuildIN.Steak}Staking Rewards:__`,
+value:`${Token.WATT}${OTHER_alt_wattRewards} WATT `,inline: true})
+
+const polygon_balance = new EmbedBuilder()
+.setColor(0xA020F0)
+
+.setAuthor({name:'Polygon Network',
+iconURL:'https://cdn.discordapp.com/attachments/1078780922297598023/1079282443116351509/matic.png',
+url:`https://polygonscan.com/address/${Check2.adress}`})
+
+.addFields({
+name:`__${Custom.Wallet}Wallet__`,value:`${Token.MATIC} __${OTHER_MATIC_Balance.toFixed(4)} MATIC__ / ${Fiat.USD}${OTHER_MATIC_USD}USD\n ${Token.WATT} ${OTHER_WATT_Balance.toFixed(4)} WATT /${Fiat.USD} ${OTHER_WATT_USD} USD\n
+*Balance of ${Fiat.USD} ${OTHER_Total_Balnace.toFixed(2)} USD*`,inline: true},
+ {name:`${BuildIN.Steak}__Staking Rewards:__`,value:`${Token.WATT}${OTHER_NEWREWARDS} WATT / ${Fiat.USD}${(OTHER_NEWREWARDS * WATT_Price).toFixed(2)} USD `,inline: true}
+)
+const finalembed = [balancebanner, altcoin_balance,polygon_balance]
+
+interaction.editReply({embeds:finalembed,ephemeral: true})
+    }
 }}
     }
-}
