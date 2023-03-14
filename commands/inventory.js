@@ -278,21 +278,5 @@ const polygon_Inventory = new EmbedBuilder()
 
       await interaction.editReply({embeds:finalembed
         ,ephemeral: true})
-//   interaction.editReply({
-//       content: `${interaction.options.getUser("user")}'s \n
-//       >>> ${Token.MATIC}**Polygon Network**${Token.MATIC}
-//       ${Custom.boxes}**Inventory:**${Custom.boxes}
-// ${nonstaked}
-// **${BuildIN.Steak}Staked NFT'S:**${BuildIN.Steak}\n`
-//       +InventoryString +
-//              `*Daily income: ${Token.WATT} ${Daily} WATT*\n
-// ${Token.ALT}**Altcoin Network**${Token.ALT}
-//       ${Custom.boxes}**Inventory:**${Custom.boxes}
-// ${alt_nonstaked}
-// ${BuildIN.Steak}**Staked NFT'S:**${BuildIN.Steak}\n`
-//       +alt_InventoryString+`
-// *Daily income:${Token.WATT} ${alt_Daily} WATT*`,
-      
-//       ephemeral: true })
 
 }}}}
