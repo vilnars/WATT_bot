@@ -7,6 +7,10 @@ const commands = [
     description: 'Shows the latency of the Bot!',
   },
   {
+    name: 'unregister',
+    description: 'Use to remove your address from database',
+  },
+  {
     name: 'donate',
     description: 'Will display Donation Address if you want to support Bot creator',
   },
