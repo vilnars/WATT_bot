@@ -1,5 +1,5 @@
 const AddressSchema = require('../models/adresesSchema')
-const {BuildIN} = (`../lib/emogi`)
+const {BuildIN} = require(`../lib/emogi`)
 module.exports = {
     name:'register',
     async execute(interaction){
