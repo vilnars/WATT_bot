@@ -14,9 +14,9 @@ To check your own inventory, type `/inventory` in the chat.
 
 To check another user's inventory, mention them in the command. For example, to check the inventory of Altcoin Cash, type `/inventory @Altcoin Cash#3471` in the chat.
 
-## Address
+## Register
 
-This command allows users to add their address to a database for use with other commands. To use it, type `/address <address>`. For example, to add a dead adress, type `/address 0x0000000000000000000000000000000000000000` in the chat.
+This command allows users to add their address to a database for use with other commands. To use it, type `/address <address>`. For example, to add a dead adress, type `/register 0x0000000000000000000000000000000000000000` in the chat.
 
 ## Balance
 
